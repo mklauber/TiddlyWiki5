@@ -9,6 +9,13 @@ tags: $:/tags/ViewTemplate
 
 <$transclude tiddler="$:/language/MissingTiddler/Hint"/>
 
+<$list filter="[title{!!title}listed[aliases]first[]]" variable="">
+You may have meant one of the following pages
+<$list filter="[title{!!title}listed[aliases]]">
+<li><$link>{{!!title}}</$link></li>
+</$list>
+
+</$list>
 </$transclude>
 
 </$list>

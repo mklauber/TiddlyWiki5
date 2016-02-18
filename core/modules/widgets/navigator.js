@@ -175,6 +175,12 @@ Handle a tm-navigate event
 */
 NavigatorWidget.prototype.handleNavigateEvent = function(event) {
 	if(event.navigateTo) {
+		if (!this.wiki.tiddlerExists(event.navigateTo) && event.followAliases === "true") {
+			var aliases = this.wiki.filterTiddlers("[title["+event.navigateTo+"]listed[aliases]]")
+			if (aliases.length === 1) {
+				event.navigateTo = aliases[0]
+			}
+		}
 		this.addToStory(event.navigateTo,event.navigateFromTitle);
 		if(!event.navigateSuppressNavigation) {
 			this.addToHistory(event.navigateTo,event.navigateFromClientRect);

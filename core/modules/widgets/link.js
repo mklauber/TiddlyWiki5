@@ -131,7 +131,8 @@ LinkWidget.prototype.handleClickEvent = function(event) {
 		navigateFromNode: this,
 		navigateFromClientRect: { top: bounds.top, left: bounds.left, width: bounds.width, right: bounds.right, bottom: bounds.bottom, height: bounds.height
 		},
-		navigateSuppressNavigation: event.metaKey || event.ctrlKey || (event.button === 1)
+		navigateSuppressNavigation: event.metaKey || event.ctrlKey || (event.button === 1),
+		followAliases: this.followAliases
 	});
 	if(this.domNodes[0].hasAttribute("href")) {
 		event.preventDefault();
@@ -211,6 +212,7 @@ LinkWidget.prototype.execute = function() {
 	this["aria-label"] = this.getAttribute("aria-label");
 	this.linkClasses = this.getAttribute("class");
 	this.tabIndex = this.getAttribute("tabindex");
+	this.followAliases = this.getAttribute("followAliases", "true");
 	this.draggable = this.getAttribute("draggable","yes");
 	this.linkTag = this.getAttribute("tag","a");
 	// Determine the link characteristics
