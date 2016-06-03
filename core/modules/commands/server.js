@@ -298,6 +298,7 @@ Command.prototype.execute = function() {
 		pathprefix: pathprefix
 	});
 	this.server.listen(port,host);
+	$tw.server = this.server;
 	console.log("Serving on " + host + ":" + port);
 	console.log("(press ctrl-C to exit)");
 	// Warn if required plugins are missing
